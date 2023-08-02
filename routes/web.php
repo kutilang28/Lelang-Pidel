@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['guest'])->group(function () {
     Route::get('/',[SesiController::class,'index'])->name('login');
     Route::post('/',[SesiController::class,'login']);
+    Route::get('/register',[SesiController::class,'getregister']);
+    Route::post('/register',[SesiController::class,'register']);
 });
 Route::get('/home', function () {
     return redirect('/admin');

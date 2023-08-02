@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;  // assuming you have a User model
+use Illuminate\Support\Facades\Hash;  // for hashing the password
 
 class SesiController extends Controller
 {
@@ -12,6 +14,30 @@ class SesiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function getregister(){
+        return view('signup');
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name'=>'required',
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|confirmed|min:6',
+        ]);
+
+        User::create([
+            'name'=>$request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        // login the user (optional)
+        // auth()->login($user);
+
+        return redirect('/');  // redirect the user after successful registration
+    }
+
     public function index()
     {
         return view('login');
