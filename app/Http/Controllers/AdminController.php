@@ -18,11 +18,11 @@ class AdminController extends Controller
     }
     public function petugas()
     {
-        return view('landing');
+        return view('petugas');
     }
     public function masyarakat()
     {
-        return view('landing');
+        return view('masyarakat');
     }
     public function admin()
     {

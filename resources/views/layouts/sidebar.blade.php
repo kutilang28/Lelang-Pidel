@@ -15,13 +15,13 @@
         </div>
         <div class="info">
           @if (Auth::user()->role == 'administrator')
-          <div class="text-bg-light">Menu Admin</div>
+          {{ Auth::user()->name }}
           @endif
           @if (Auth::user()->role == 'petugas')
-          Menu Petugas
+          {{ Auth::user()->name }}
           @endif
           @if (Auth::user()->role == 'masyarakat')
-          Menu Masyarakat
+          {{ Auth::user()->name }}
           @endif
         </div>
       </div>
@@ -44,6 +44,9 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
+            <li class="nav-item">            
+              <div><a href="/logout" class="btn btn-sm btn-secondary">Logout >></a></div>
+            </li>
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>

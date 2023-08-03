@@ -1,4 +1,4 @@
-@include('layouts.header')
+@include('layouts.headersign')
 <center>
 <body class="hold-transition register-page">
 <div class="register-box">
@@ -11,7 +11,7 @@
         <a href="/" class="btn btn-secondary">Kembali</a>
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="/register" method="POST">
+      <form action="" method="POST">
         @csrf
         <div class="input-group mb-3">
             <input type="text" class="form-control" name="name" placeholder="Full name">
@@ -40,7 +40,7 @@
         
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <button type="submit" name="submit" class="btn btn-primary btn-block">Register</button>
           </div>
           <!-- /.col -->
       </form>

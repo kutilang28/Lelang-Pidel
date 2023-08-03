@@ -1,4 +1,4 @@
-@include('layouts.header')
+@include('layouts.headersign')
 <center>
 <body class="hold-transition login-page">
     <div class="login-box">
