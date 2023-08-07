@@ -43,10 +43,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <li class="nav-item">            
-              <div><a href="/logout" class="btn btn-sm btn-secondary">Logout >></a></div>
-            </li>
+               <div><a href="/logout" class="btn btn-sm btn-secondary">Logout >></a></div>
+          {{-- <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -74,8 +72,8 @@
                 </a>
               </li>
             </ul>
-          </li>
-          <li class="nav-item">
+          </li> --}}
+          {{-- <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
@@ -83,9 +81,9 @@
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            {{-- <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Layout Options
@@ -319,8 +317,8 @@
                 Gallery
               </p>
             </a>
-          </li>
-          <li class="nav-item">
+          </li> --}}
+          {{-- <li class="nav-item">
             <a href="pages/kanban.html" class="nav-link">
               <i class="nav-icon fas fa-columns"></i>
               <p>
@@ -586,14 +584,30 @@
               <i class="nav-icon fas fa-ellipsis-h"></i>
               <p>Tabbed IFrame Plugin</p>
             </a>
+          </li> --}}
+          @if (Auth::user()->role == 'administrator')
+          <li class="nav-item">
+            <a href="https://adminlte.io/docs/3.1/" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>Tambah Barang</p>
+            </a>
           </li>
           <li class="nav-item">
             <a href="https://adminlte.io/docs/3.1/" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
-              <p>Documentation</p>
+              <p>Tambah Petugas</p>
             </a>
           </li>
-          <li class="nav-header">MULTI LEVEL EXAMPLE</li>
+          @endif
+          @if (Auth::user()->role == 'petugas')
+          <li class="nav-item">
+            <a href="https://adminlte.io/docs/3.1/" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>Tambah Barang</p>
+            </a>
+          </li>
+          @endif
+          {{-- <li class="nav-header">MULTI LEVEL EXAMPLE</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="fas fa-circle nav-icon"></i>
@@ -676,7 +690,7 @@
               <i class="nav-icon far fa-circle text-info"></i>
               <p>Informational</p>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

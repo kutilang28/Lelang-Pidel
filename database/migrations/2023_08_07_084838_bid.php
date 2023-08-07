@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TbBarang extends Migration
+class Bid extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class TbBarang extends Migration
      */
     public function up()
     {
-        Schema::create('tb_barang', function (Blueprint $table) {
-            $table->id('id_barang');
-            $table->string('nama_barang');
-            $table->date('tgl');
-            $table->integer('harga_awal');
-            $table->string('deskripsi_barang');
+        Schema::create('bid', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('item_id')->constrained()->onDelete('cascade');
+            $table->decimal('amount');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class TbBarang extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_barang');
+        Schema::dropIfExists('bid');
     }
 }
