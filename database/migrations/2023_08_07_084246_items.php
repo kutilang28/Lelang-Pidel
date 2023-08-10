@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,8 +18,7 @@ class Items extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->decimal('starting_bid');
-            $table->timestamps();
+            $table->bigInteger('starting_bid');
             $table->timestamps();
         });
     }

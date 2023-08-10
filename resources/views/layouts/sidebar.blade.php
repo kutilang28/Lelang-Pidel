@@ -587,7 +587,7 @@
           </li> --}}
           @if (Auth::user()->role == 'administrator')
           <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.1/" class="nav-link">
+            <a href="{{route('items.index')}}" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Tambah Barang</p>
             </a>
@@ -601,7 +601,7 @@
           @endif
           @if (Auth::user()->role == 'petugas')
           <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.1/" class="nav-link">
+            <a href="{{route('items.index')}}" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Tambah Barang</p>
             </a>

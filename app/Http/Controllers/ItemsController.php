@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Items;
 use Illuminate\Http\Request;
 
 class ItemsController extends Controller
@@ -13,7 +14,11 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        //
+        $data = Items::all();
+
+        return view('items.index', compact('data'))->with([
+            'items' => Items::all(),
+            ]);
     }
 
     /**
@@ -23,7 +28,7 @@ class ItemsController extends Controller
      */
     public function create()
     {
-        //
+        return view('items.create');
     }
 
     /**
@@ -34,7 +39,14 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Items::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'starting_bid' => $request->starting_bid,
+        ]
+        );
+
+        return redirect('items')->with('success', 'Penambahan Data Barang Berhasil!');
     }
 
     /**
@@ -56,7 +68,9 @@ class ItemsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('items.edit')->with([
+            'items' => Items::find($id),
+        ]);
     }
 
     /**
@@ -68,7 +82,19 @@ class ItemsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'starting_bid' => 'required',
+        ]);
+
+        $items = Items::findOrFail($id);
+        $items->name = $request->name;
+        $items->description = $request->description;
+        $items->starting_bid = $request->starting_bid;
+        $items->save();
+
+        return redirect('items')->with('success', 'Data Berhasil Diedit');
     }
 
     /**
@@ -79,6 +105,8 @@ class ItemsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $items = Items::find($id);
+        $items->delete();
+        return back()->with('success', 'Data Berhasil Di Hapus !.');
     }
 }

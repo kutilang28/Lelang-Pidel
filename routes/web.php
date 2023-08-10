@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\SesiController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/admin',[AdminController::class,'admin'])->middleware('userAkses:administrator');
     Route::get('/admin/petugas',[AdminController::class,'petugas'])->middleware('userAkses:petugas');
     Route::get('/admin/masyarakat',[AdminController::class,'masyarakat'])->middleware('userAkses:masyarakat');
+    Route::resource('items', ItemsController::class)->middleware('userAkses:administrator');
+    // Route::resource('items', ItemsController::class)->middleware('userAkses:petugas');
+    Route::post('items/{item}/bids', [BidController::class, 'store'])->name('bids.store');
     Route::get('/logout', [SesiController::class, 'logout']);
 });

@@ -35,7 +35,7 @@ class SesiController extends Controller
         // login the user (optional)
         // auth()->login($user);
 
-        return redirect('/home');  // redirect the user after successful registration
+        return redirect('login')->with('success', 'Penambahan Data Barang Berhasil!');  // redirect the user after successful registration
     }
 
     public function index()
