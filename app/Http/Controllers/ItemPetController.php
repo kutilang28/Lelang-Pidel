@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Items;
 use Illuminate\Http\Request;
 
-class ItemsController extends Controller
+class ItemPetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class ItemsController extends Controller
     {
         $data = Items::all();
 
-        return view('items.index', compact('data'))->with([
-            'items' => Items::all(),
+        return view('itempet.index', compact('data'))->with([
+            'itempet' => Items::all(),
             ]);
     }
 
@@ -28,7 +28,7 @@ class ItemsController extends Controller
      */
     public function create()
     {
-        return view('items.create');
+        return view('itempet.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class ItemsController extends Controller
         $items->foto = $request->foto;
         $items->save();
 
-        return redirect('items')->with('success', 'Penambahan Data Barang Berhasil!');
+        return redirect('itempet')->with('success', 'Penambahan Data Barang Berhasil!');
     }
 
     /**
@@ -72,8 +72,8 @@ class ItemsController extends Controller
      */
     public function edit($id)
     {
-        return view('items.edit')->with([
-            'items' => Items::find($id),
+        return view('itempet.edit')->with([
+            'itempet' => Items::find($id),
         ]);
     }
 
@@ -98,7 +98,7 @@ class ItemsController extends Controller
         $items->starting_bid = $request->starting_bid;
         $items->save();
 
-        return redirect('items')->with('success', 'Data Berhasil Diedit');
+        return redirect('itempet')->with('success', 'Data Berhasil Diedit');
     }
 
     /**

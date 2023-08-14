@@ -19,6 +19,7 @@ class Items extends Migration
             $table->string('name');
             $table->text('description');
             $table->bigInteger('starting_bid');
+            $table->string('foto');
             $table->timestamps();
         });
     }

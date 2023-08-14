@@ -20,22 +20,14 @@ class SesiController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
-            'name'=>'required',
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string|confirmed|min:6',
-        ]);
-
-        User::create([
-            'name'=>$request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        // login the user (optional)
-        // auth()->login($user);
-
-        return redirect('login')->with('success', 'Penambahan Data Barang Berhasil!');  // redirect the user after successful registration
+          
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role = $request->role;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect('login')->with('success', 'Penambahan Data Barang Berhasil!');
     }
 
     public function index()

@@ -15,7 +15,7 @@
           <div class="card-header">
             <h3 class="card-title">Bordered Table</h3>
             <div class="card-tools">
-              <a href="{{route('items.create')}}" class="btn btn-success">tambah data <i class="fas fa-plus-square"></i></a>
+              <a href="{{route('itempet.create')}}" class="btn btn-success">tambah data <i class="fas fa-plus-square"></i></a>
             </div>
           </div>
           <!-- /.card-header -->
@@ -44,8 +44,8 @@
                       <td>{{$item -> starting_bid}}</td>
                       <td>{{$item -> created_at}}</td>
                       <td>
-                        <form action="{{ route('items.destroy', $item->id)  }}" method="POST">
-                          <a class="btn btn-warning" href="{{route('items.edit', $item->id)}}">Edit</a>
+                        <form action="{{ route('itempet.destroy', $item->id)  }}" method="POST">
+                          <a class="btn btn-warning" href="{{route('itempet.edit', $item->id)}}">Edit</a>
                           @csrf
                           @method('delete')
                           <button class="btn btn-danger btn-sm">Hapus</button>

@@ -15,7 +15,7 @@
           <div class="card-header">
             <h3 class="card-title">Bordered Table</h3>
             <div class="card-tools">
-              <a href="{{route('items.create')}}" class="btn btn-success">tambah data <i class="fas fa-plus-square"></i></a>
+              <a href="{{route('petugas.create')}}" class="btn btn-success">tambah data petugas<i class="fas fa-plus-square"></i></a>
             </div>
           </div>
           <!-- /.card-header -->
@@ -23,12 +23,10 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th style="width: 10px">id barang</th>
-                  <th>Nama Barang</th>
-                  <th>Foto Barang</th>
-                  <th>Deskripsi Barang</th>
-                  <th>Harga Awal Barang</th>
-                  <th>Tgl Postingan</th>
+                  <th style="width: 10px">id petugas</th>
+                  <th>Nama</th>
+                  <th>Email</th>
+                  <th>Password</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -37,15 +35,12 @@
                     <tr>
                       <td>{{$item -> id}}</td>
                       <td>{{$item -> name}}</td>
-                      <td>
-                        <img src="{{ asset('img/'.$item->foto) }}" width="100px">
-                      </td>
-                      <td>{{$item -> description}}</td>
-                      <td>{{$item -> starting_bid}}</td>
+                      <td>{{$item -> email}}</td>
+                      <td>{{$item -> password}}</td>
                       <td>{{$item -> created_at}}</td>
                       <td>
-                        <form action="{{ route('items.destroy', $item->id)  }}" method="POST">
-                          <a class="btn btn-warning" href="{{route('items.edit', $item->id)}}">Edit</a>
+                        <form action="{{ route('petugas.destroy', $item->id)  }}" method="POST">
+                          <a class="btn btn-warning" href="{{route('petugas.edit', $item->id)}}">Edit</a>
                           @csrf
                           @method('delete')
                           <button class="btn btn-danger btn-sm">Hapus</button>

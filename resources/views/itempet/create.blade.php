@@ -33,7 +33,7 @@
                 </button>
               </div>
             </div>
-            <form action="{{url('items')}}" method="POST">
+            <form action="{{url('itempet')}}" method="POST">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
@@ -60,7 +60,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <a href="{{route('items.index')}}" class="btn btn-secondary">Cancel</a>
+            <a href="{{route('itempet.indexpet')}}" class="btn btn-secondary">Cancel</a>
             <button type="submit" class="btn btn-success float-right">Tambah Barang</button>
         </div>
     </div>

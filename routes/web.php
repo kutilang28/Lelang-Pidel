@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ItemPetController;
 use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\SesiController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +22,7 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/',[SesiController::class,'index'])->name('login');
     Route::post('/',[SesiController::class,'login']);
     Route::get('/register',[SesiController::class,'getregister']);
-    Route::post('/register',[SesiController::class,'register']);
+    Route::post('/register', [SesiController::class,'register']);
 });
 Route::get('/home', function () {
     return redirect('/admin');
@@ -31,8 +33,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/admin',[AdminController::class,'admin'])->middleware('userAkses:administrator');
     Route::get('/admin/petugas',[AdminController::class,'petugas'])->middleware('userAkses:petugas');
     Route::get('/admin/masyarakat',[AdminController::class,'masyarakat'])->middleware('userAkses:masyarakat');
-    Route::resource('items', ItemsController::class)->middleware('userAkses:administrator');
-    // Route::resource('items', ItemsController::class)->middleware('userAkses:petugas');
+    Route::resource('items', ItemsController::class)->middleware('userAkses:administrator,petugas');
+    Route::resource('itempet', ItemPetController::class)->middleware('userAkses:petugas');
+    Route::resource('petugas', PetugasController::class)->middleware('userAkses:administrator');
     Route::post('items/{item}/bids', [BidController::class, 'store'])->name('bids.store');
     Route::get('/logout', [SesiController::class, 'logout']);
 });

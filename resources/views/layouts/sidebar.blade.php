@@ -15,13 +15,13 @@
         </div>
         <div class="info">
           @if (Auth::user()->role == 'administrator')
-          {{ Auth::user()->name }}
+          <div class="d-block">{{ Auth::user()->name }}</div>
           @endif
           @if (Auth::user()->role == 'petugas')
-          {{ Auth::user()->name }}
+          <div class="d-block">{{ Auth::user()->name }}</div>
           @endif
           @if (Auth::user()->role == 'masyarakat')
-          {{ Auth::user()->name }}
+          <div class="d-block">{{ Auth::user()->name }}</div>
           @endif
         </div>
       </div>
@@ -43,7 +43,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               <div><a href="/logout" class="btn btn-sm btn-secondary">Logout >></a></div>
+               
           {{-- <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -593,7 +593,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.1/" class="nav-link">
+            <a href="{{route('petugas.index')}}" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Tambah Petugas</p>
             </a>

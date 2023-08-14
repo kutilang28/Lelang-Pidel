@@ -11,7 +11,7 @@
         <a href="/" class="btn btn-secondary">Kembali</a>
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="" method="POST">
+      <form action="/register" method="POST">
         @csrf
         <div class="input-group mb-3">
             <input type="text" class="form-control" name="name" placeholder="Full name">
@@ -37,6 +37,7 @@
             </div>
           </div>
         </div>
+        <input type="text" name="role" id="role" value="masyarakat" hidden>
         
           <!-- /.col -->
           <div class="col-4">

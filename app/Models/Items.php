@@ -11,7 +11,7 @@ class Items extends Model
     protected $table = "items";
     protected $primaryKey = "id";
     protected $fillable = [
-        'id','name','description','starting_bid'
+        'id','name','description','starting_bid', 'foto'
     ];
 
     public function bids()

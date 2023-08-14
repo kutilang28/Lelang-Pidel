@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Items;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;  // assuming you have a User model
+use Illuminate\Support\Facades\Hash;
 
-class ItemsController extends Controller
+class PetugasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +16,8 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        $data = Items::all();
-
-        return view('items.index', compact('data'))->with([
-            'items' => Items::all(),
-            ]);
+        $data = User::where('role', 'petugas')->get();
+        return view('petugas.index', compact('data'));
     }
 
     /**
@@ -28,7 +27,7 @@ class ItemsController extends Controller
      */
     public function create()
     {
-        return view('items.create');
+        return view('petugas.create');
     }
 
     /**
@@ -39,18 +38,13 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-        $items = new Items;
-        $items->name = $request->name;
-        $items->description = $request->description;
-        $items->starting_bid = $request->starting_bid;
-        if ($request->hasFile('foto')) {
-            $request->file('foto')->move('images/',$request->file('foto')->getClientOriginalName());
-            $items->foto = $request->file('foto')->getClientOriginalName();
-        }
-        $items->foto = $request->foto;
-        $items->save();
-
-        return redirect('items')->with('success', 'Penambahan Data Barang Berhasil!');
+        $petugas = new User;
+        $petugas->name = $request->name;
+        $petugas->email = $request->email;
+        $petugas->role = $request->role;
+        $petugas->password = Hash::make($request->password);
+        $petugas->save();
+        return redirect('petugas')->with('success', 'Penambahan Data Barang Berhasil!');
     }
 
     /**
@@ -72,8 +66,8 @@ class ItemsController extends Controller
      */
     public function edit($id)
     {
-        return view('items.edit')->with([
-            'items' => Items::find($id),
+        return view('petugas.edit')->with([
+            'petugas' => User::find($id),
         ]);
     }
 
@@ -86,19 +80,7 @@ class ItemsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'starting_bid' => 'required',
-        ]);
-
-        $items = Items::findOrFail($id);
-        $items->name = $request->name;
-        $items->description = $request->description;
-        $items->starting_bid = $request->starting_bid;
-        $items->save();
-
-        return redirect('items')->with('success', 'Data Berhasil Diedit');
+        //
     }
 
     /**
@@ -109,8 +91,8 @@ class ItemsController extends Controller
      */
     public function destroy($id)
     {
-        $items = Items::find($id);
-        $items->delete();
+        $petugas = User::find($id);
+        $petugas->delete();
         return back()->with('success', 'Data Berhasil Di Hapus !.');
     }
 }

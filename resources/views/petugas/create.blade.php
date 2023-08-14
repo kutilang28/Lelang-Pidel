@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tambah barang</h1>
+            <h1>Tambah Petugas</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -33,25 +33,22 @@
                 </button>
               </div>
             </div>
-            <form action="{{url('items')}}" method="POST">
+            <form action="{{url('petugas')}}" method="POST">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="inputName">Nama Barang</label>
+                    <label for="inputName">Nama</label>
                     <input type="text" name="name" id="name" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label for="inputDescription">Deskripsi barang</label>
-                    <textarea id="inputDescription" name="description" class="form-control" rows="4"></textarea>
+                    <label for="inputName">Email</label>
+                    <input type="email" name="email" id="email" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label for="foto">Foto</label>
-                    <input type="file" name="foto" id="foto" class="form-control">
+                    <label for="inputName">Password</label>
+                    <input type="text" name="password" id="password" class="form-control">
                   </div>
-                  <div class="form-group">
-                    <label for="inputClientCompany">Harga Lelang</label>
-                    <input type="number" name="starting_bid" id="inputClientCompany" class="form-control">
-                  </div>
+                  <input type="text" name="role" id="role" value="petugas" hidden> 
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -60,7 +57,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <a href="{{route('items.index')}}" class="btn btn-secondary">Cancel</a>
+            <a href="{{route('petugas.index')}}" class="btn btn-secondary">Cancel</a>
             <button type="submit" class="btn btn-success float-right">Tambah Barang</button>
         </div>
     </div>
