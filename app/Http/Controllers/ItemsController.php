@@ -44,10 +44,11 @@ class ItemsController extends Controller
         $items->description = $request->description;
         $items->starting_bid = $request->starting_bid;
         if ($request->hasFile('foto')) {
-            $request->file('foto')->move('images/',$request->file('foto')->getClientOriginalName());
-            $items->foto = $request->file('foto')->getClientOriginalName();
+            $imageName = time().'.'.$request->foto->extension();  
+            $request->foto->move(public_path('img'), $imageName);
         }
-        $items->foto = $request->foto;
+        $items->foto = $imageName;
+        $items->end_time = $request->end_time;
         $items->save();
 
         return redirect('items')->with('success', 'Penambahan Data Barang Berhasil!');
@@ -90,12 +91,15 @@ class ItemsController extends Controller
             'name' => 'required',
             'description' => 'required',
             'starting_bid' => 'required',
+            'end_time' => 'required',
         ]);
 
         $items = Items::findOrFail($id);
         $items->name = $request->name;
         $items->description = $request->description;
         $items->starting_bid = $request->starting_bid;
+        $items->foto = $request->foto;
+        $items->end_time = $request->end_time;
         $items->save();
 
         return redirect('items')->with('success', 'Data Berhasil Diedit');

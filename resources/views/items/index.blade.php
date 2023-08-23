@@ -29,6 +29,7 @@
                   <th>Deskripsi Barang</th>
                   <th>Harga Awal Barang</th>
                   <th>Tgl Postingan</th>
+                  <th>Tgl Selesai</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -38,11 +39,12 @@
                       <td>{{$item -> id}}</td>
                       <td>{{$item -> name}}</td>
                       <td>
-                        <img src="{{ asset('img/'.$item->foto) }}" width="100px">
+                        <img src="{{asset('img/'.$item->foto)}}" width="100px">
                       </td>
                       <td>{{$item -> description}}</td>
                       <td>{{$item -> starting_bid}}</td>
                       <td>{{$item -> created_at}}</td>
+                      <td>{{$item -> end_time}}</td>
                       <td>
                         <form action="{{ route('items.destroy', $item->id)  }}" method="POST">
                           <a class="btn btn-warning" href="{{route('items.edit', $item->id)}}">Edit</a>

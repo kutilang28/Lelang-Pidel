@@ -33,7 +33,7 @@
                 </button>
               </div>
             </div>
-            <form action="{{url('items')}}" method="POST">
+            <form action="{{url('items')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
@@ -47,6 +47,10 @@
                   <div class="form-group">
                     <label for="foto">Foto</label>
                     <input type="file" name="foto" id="foto" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="end_time">Tanggal terakhir lelang</label>
+                    <input type="datetime-local" name="end_time" class="form-control" id="end_time" required>
                   </div>
                   <div class="form-group">
                     <label for="inputClientCompany">Harga Lelang</label>

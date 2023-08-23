@@ -58,7 +58,7 @@ class SesiController extends Controller
                 return redirect('admin/masyarakat');
             }
         }else {
-            return redirect('')->withErrors('email dan password salah')->withInput();
+            return redirect('login')->withErrors('email dan password salah')->withInput();
         }
     }
 
