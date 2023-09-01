@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Bid extends Migration
+class Items extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class Bid extends Migration
      */
     public function up()
     {
-        Schema::create('bids', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('items_id');
-            $table->decimal('amount');
+            $table->string('name');
+            $table->text('description');
+            $table->bigInteger('starting_bid');
+            $table->string('foto');
+            $table->timestamp('end_time')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class Bid extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bid');
+        //
     }
 }

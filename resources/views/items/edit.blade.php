@@ -33,7 +33,7 @@
                 </button>
               </div>
             </div>
-            <form action="{{url('items', $items->id)}}" method="POST">
+            <form action="{{url('items', $items->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="card-body">

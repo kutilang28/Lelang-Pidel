@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Items;
 use Carbon\Carbon;
 use App\Models\Bid;
-use App\Models\Items as ModelsItems;
+use App\Models\Items;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Items as ModelsItems;
 
 class BidController extends Controller
 {
@@ -42,26 +43,33 @@ class BidController extends Controller
      */
     public function store(Request $request, Items $items)
     {
-        if (Carbon::now() > $items->end_time) {
+        if (Carbon::now() > $request->end_time) {
             return redirect()->back()->withErrors(['error' => 'The auction has ended.']);
         }
         
         $request->validate([
             'amount' => 'required', // Ensure a positive amount
+            'items_id' => 'required',
         ]);
 
         // Get the current highest bid for the product
-        $highestBid = $items->bids()->orderByDesc('amount')->first();
+        $highestBid = DB::table('bids')
+                ->where('items_id', $request->items_id)
+                ->orderByDesc('amount')
+                ->first();
 
         // Check if this bid is higher than the current highest bid
         if ($highestBid && $highestBid->amount >= $request->amount) {
-            return redirect()->back()->withErrors(['error' => 'Your bid must be higher than the current highest bid.']);
+            return redirect()->back()->withErrors(['error' => 'Tawaran anda harus lebih besar dari tawaran tertinggi sekarang.']);
+        } elseif ($request->amount <= $request->starting_bid) {
+            return redirect()->back()->withErrors(['error' => 'Tawaran anda harus lebih besar dari harga tawaran awal']);            
         }
+        
 
         // Store the new bid
         $bid = new Bid;
         $bid->user_id = auth()->id(); // Assign the currently logged-in user
-        $bid->product_id = $items->id;
+        $bid->items_id = $request->items_id;
         $bid->amount = $request->amount;
         $bid->save();
 
@@ -76,7 +84,13 @@ class BidController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Items::findOrFail($id);
+        $highestBid = DB::table('bids')
+                ->where('items_id', $item->id)
+                ->orderByDesc('amount')
+                ->first();
+
+        return view('bid.create', compact('item', 'highestBid'));
     }
 
     /**

@@ -44,10 +44,11 @@ class ItemPetController extends Controller
         $items->description = $request->description;
         $items->starting_bid = $request->starting_bid;
         if ($request->hasFile('foto')) {
-            $request->file('foto')->move('images/',$request->file('foto')->getClientOriginalName());
-            $items->foto = $request->file('foto')->getClientOriginalName();
+            $imageName = time().'.'.$request->foto->extension();  
+            $request->foto->move(public_path('img'), $imageName);
         }
-        $items->foto = $request->foto;
+        $items->foto = $imageName;
+        $items->end_time = $request->end_time;
         $items->save();
 
         return redirect('itempet')->with('success', 'Penambahan Data Barang Berhasil!');
@@ -90,12 +91,19 @@ class ItemPetController extends Controller
             'name' => 'required',
             'description' => 'required',
             'starting_bid' => 'required',
+            'end_time' => 'required',
         ]);
 
         $items = Items::findOrFail($id);
         $items->name = $request->name;
         $items->description = $request->description;
         $items->starting_bid = $request->starting_bid;
+        if ($request->hasFile('foto')) {
+            $imageName = time().'.'.$request->foto->extension();  
+            $request->foto->move(public_path('img'), $imageName);
+        }
+        $items->foto = $imageName;
+        $items->end_time = $request->end_time;
         $items->save();
 
         return redirect('itempet')->with('success', 'Data Berhasil Diedit');

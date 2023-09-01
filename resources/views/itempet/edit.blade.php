@@ -33,25 +33,33 @@
                 </button>
               </div>
             </div>
-            <form action="{{url('itempet', $items->id)}}" method="POST">
-                @csrf
-                @method('PUT')
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="inputName">Nama Barang</label>
-                    <input type="text" name="name" id="name" class="form-control" value="{{$items->name}}">
-                  </div>
-                  <div class="form-group">
-                    <label for="inputDescription">Deskripsi barang</label>
-                    <textarea id="inputDescription" name="description" class="form-control" rows="4">{{$items->description}}</textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputClientCompany">Harga Lelang</label>
-                    <input type="number" name="starting_bid" id="inputClientCompany" class="form-control" value="{{$items->starting_bid}}">
-                  </div>
+            <form action="{{url('itempet', $itempet->id)}}" method="POST" enctype="multipart/form-data">
+              @csrf
+              @method('PUT')
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="inputName">Nama Barang</label>
+                  <input type="text" name="name" id="name" class="form-control" value="{{$itempet->name}}">
                 </div>
-                <!-- /.card-body -->
-            </div>
+                <div class="form-group">
+                  <label for="inputDescription">Deskripsi barang</label>
+                  <textarea id="inputDescription" name="description" class="form-control" rows="4">{{$itempet->description}}</textarea>
+                </div>
+                <div class="form-group">
+                  <label for="foto">Foto</label>
+                  <input type="file" name="foto" id="foto" class="form-control" value="{{ $itempet->foto }}">
+                </div>
+                <div class="form-group">
+                  <label for="end_time">Tanggal terakhir lelang</label>
+                  <input type="datetime-local" name="end_time" class="form-control" id="end_time" required value="{{ $itempet->end_time }}">
+                </div>
+                <div class="form-group">
+                  <label for="inputClientCompany">Harga Lelang</label>
+                  <input type="number" name="starting_bid" id="inputClientCompany" class="form-control" value="{{$itempet->starting_bids}}">
+                </div>
+              </div>
+              <!-- /.card-body -->
+          </div>
             <!-- /.card -->
         </div>
     </div>

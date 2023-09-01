@@ -13,7 +13,7 @@
           <a href="/admin/petugas" class="nav-link">Home</a>
           @endif
           @if (Auth::user()->role == 'masyarakat')
-          <a href="/admin/masyarakat" class="nav-link">Home</a>
+          <a href="/masyarakat" class="nav-link">Home</a>
           @endif
       </li>
       <li class="nav-item d-none d-sm-inline-block">

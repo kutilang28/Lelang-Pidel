@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Items;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 
-class AdminController extends Controller
+class LaporanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,29 +17,26 @@ class AdminController extends Controller
      */
     public function index()
     {
-            if (Auth::user()->role == 'administrator') {
-                return redirect('admin/admin');
-            }elseif (Auth::user()->role == 'petugas') {
-                return redirect('admin/petugas');
-            }elseif (Auth::user()->role == 'masyarakat') {
-                return redirect('/masyarakat');
-            }
-    }
-    public function petugas()
-    {
-        return view('petugas');
-    }
-    public function masyarakat()
-    {
-        
         $data = Items::all();
-        return view('index', compact('data'))->with([
-            'items' => Items::all(),
-            ]);
-    }
-    public function admin()
-    {
-        return view('admin');
+        $endedAuctions = DB::table('items')
+                ->leftJoinSub(
+                    DB::table('bids')
+                        ->select('items_id', DB::raw('MAX(amount) as max_bid'))
+                        ->groupBy('items_id'),
+                    'max_bids',
+                    'items.id',
+                    '=',
+                    'max_bids.items_id'
+                )
+                ->leftJoin('bids', function($join) {
+                    $join->on('items.id', '=', 'bids.items_id');
+                    $join->on('max_bids.max_bid', '=', 'bids.amount');
+                })
+                ->leftJoin('users', 'bids.user_id', '=', 'users.id')
+                ->select('items.id as product_id', 'items.name as item_name', 'users.name as winner_name', 'bids.user_id as winner_id', 'bids.amount as winning_amount', 'items.end_time as winning_date')
+                ->where('items.end_time', '<', now())
+                ->get();
+        return view('laporan.index', compact('endedAuctions'));
     }
 
     /**

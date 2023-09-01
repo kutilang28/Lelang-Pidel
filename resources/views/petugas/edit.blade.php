@@ -38,18 +38,18 @@
                 @method('PUT')
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="inputName">Nama Barang</label>
-                    <input type="text" name="name" id="name" class="form-control" value="{{$items->name}}">
+                    <label for="inputName">Nama</label>
+                    <input type="text" name="name" id="name" class="form-control" value="{{ $petugas->name }}">
                   </div>
                   <div class="form-group">
-                    <label for="inputDescription">Deskripsi barang</label>
-                    <textarea id="inputDescription" name="description" class="form-control" rows="4">{{$items->description}}</textarea>
+                    <label for="inputName">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" value="{{ $petugas->email }}">
                   </div>
                   <div class="form-group">
-                    <label for="inputClientCompany">Harga Lelang</label>
-                    <input type="number" name="starting_bid" id="inputClientCompany" class="form-control" value="{{$items->starting_bid}}">
+                    <label for="inputName">Password</label>
+                    <input type="text" name="password" id="password" class="form-control" value="{{ $petugas->password }}">
                   </div>
-                </div>
+                  <input type="text" name="role" id="role" value="petugas" hidden> 
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->

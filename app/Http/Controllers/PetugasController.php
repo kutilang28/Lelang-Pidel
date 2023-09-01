@@ -80,7 +80,21 @@ class PetugasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'role' => 'required',
+            'password' => 'required',
+        ]);
+
+        $petugas = User::findOrFail($id);
+        $petugas->name = $request->name;
+        $petugas->email = $request->email;
+        $petugas->role = $request->role;
+        $petugas->password = Hash::make($request->password);
+        $petugas->save();
+        
+        return redirect('petugas')->with('success', 'Data Berhasil Diedit');
     }
 
     /**

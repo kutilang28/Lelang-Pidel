@@ -98,7 +98,11 @@ class ItemsController extends Controller
         $items->name = $request->name;
         $items->description = $request->description;
         $items->starting_bid = $request->starting_bid;
-        $items->foto = $request->foto;
+        if ($request->hasFile('foto')) {
+            $imageName = time().'.'.$request->foto->extension();  
+            $request->foto->move(public_path('img'), $imageName);
+        }
+        $items->foto = $imageName;
         $items->end_time = $request->end_time;
         $items->save();
 

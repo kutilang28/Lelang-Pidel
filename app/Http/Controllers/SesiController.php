@@ -55,7 +55,7 @@ class SesiController extends Controller
             }elseif (Auth::user()->role == 'petugas') {
                 return redirect('admin/petugas');
             }elseif (Auth::user()->role == 'masyarakat') {
-                return redirect('admin/masyarakat');
+                return redirect('/masyarakat');
             }
         }else {
             return redirect('login')->withErrors('email dan password salah')->withInput();

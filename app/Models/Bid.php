@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Bid extends Model
 {
     use HasFactory;
+    protected $table = "bids";
+    protected $primaryKey = "id";
+    protected $fillable = [
+        'user_id', 'items_id', 'amount'
+    ];
 
 public function user()
 {

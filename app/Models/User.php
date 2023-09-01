@@ -44,7 +44,7 @@ class User extends Authenticatable
     ];
 
     
-    public function bids()
+    public function bid()
 {
     return $this->hasMany(Bid::class);
 }

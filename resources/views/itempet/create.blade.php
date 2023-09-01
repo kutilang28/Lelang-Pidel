@@ -33,7 +33,7 @@
                 </button>
               </div>
             </div>
-            <form action="{{url('itempet')}}" method="POST">
+            <form action="{{url('itempet')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
@@ -49,6 +49,10 @@
                     <input type="file" name="foto" id="foto" class="form-control">
                   </div>
                   <div class="form-group">
+                    <label for="end_time">Tanggal terakhir lelang</label>
+                    <input type="datetime-local" name="end_time" class="form-control" id="end_time" required>
+                  </div>
+                  <div class="form-group">
                     <label for="inputClientCompany">Harga Lelang</label>
                     <input type="number" name="starting_bid" id="inputClientCompany" class="form-control">
                   </div>
@@ -60,7 +64,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <a href="{{route('itempet.indexpet')}}" class="btn btn-secondary">Cancel</a>
+            <a href="{{route('itempet.index')}}" class="btn btn-secondary">Cancel</a>
             <button type="submit" class="btn btn-success float-right">Tambah Barang</button>
         </div>
     </div>

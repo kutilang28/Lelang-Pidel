@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html>
-
-<head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
+  
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -72,9 +73,14 @@
             <div id="myNav" class="overlay">
               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
               <div class="overlay-content">
+                @guest
                 <a href="">HOME</a>
                 <a href="/login">LOGIN</a>
-                <a href="/signup">SIGNUP</a>
+                <a href="/register">REGISTER</a>
+                @else
+                <a href="">HOME</a>
+                <a href="/logout">LOGOUT</a>
+                @endguest
               </div>
             </div>
           </div>
@@ -101,11 +107,15 @@
                           <p>
                             Silahkan berbelanja di lelang cantik:>
                           </p>
+                          @guest
                           <div class="d-flex">
                             <a href="/login" class="slider_btn">
                               Login/Signup
                             </a>
                           </div>
+                          @else
+                          <p>Hallowwwww {{ Auth::user()->name }} </p>
+                          @endguest
                         </div>
                       </div>
                     </div>
@@ -276,13 +286,34 @@
       </p>
     </div>
     <div class="container layout_padding">
+      <style>
+        .product_img-box img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover; /* This will make sure that the image covers the entire dimension of the container without stretching. */
+            display: block;    /* This ensures there are no line breaks or spaces around the image. */
+        }
+    
+        .product_img-box {
+            width: 250px;
+            height: 250px;
+            overflow: hidden; /* This ensures that if an image is bigger than the container, it will be clipped. */
+            position: relative; /* This is necessary to ensure the <span> positions itself relative to this box */
+        }
+    
+        .product_img-box span {
+            position: absolute; 
+            bottom: 10px; /* Positioning the span at the bottom of the image box */
+            left: 10px; /* Some spacing from the left */
+        }
+    </style>
       <div class="product_container">
         @foreach ($data as $item)
             
-        <a href="">
+        <a href="{{ route('bid.show', $item->id) }}">
           <div class="product_box">
             <div class="product_img-box">
-              <img src="{{asset('img/'.$item->foto)}}" alt="" width="20px" />
+              <img src="{{asset('img/'.$item->foto)}}" alt="Product Image" />
               <span>
                 {{$item->name}}
               </span>
@@ -292,7 +323,7 @@
                 @currency($item -> starting_bid)
               </span>
               <p>
-                {{$item->description}}
+                {{ Str::limit($item->description, 27) }}
               </p>
             </div>
           </div>
@@ -305,7 +336,7 @@
   <!-- end products section -->
 
   <!-- find section -->
-  <section class="find_section layout_padding-bottom">
+  {{-- <section class="find_section layout_padding-bottom">
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-6 col-md-8 offset-md-2">
@@ -357,11 +388,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
 
   <!-- end find section -->
   <!-- client section -->
-  <section class="client_section layout_padding">
+  {{-- <section class="client_section layout_padding">
     <div class="container">
       <h2>
         What our Customer says
@@ -537,7 +568,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- end client section -->
 
   <!-- sign section -->

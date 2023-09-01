@@ -601,9 +601,15 @@
           @endif
           @if (Auth::user()->role == 'petugas')
           <li class="nav-item">
-            <a href="{{route('items.index')}}" class="nav-link">
+            <a href="{{route('itempet.index')}}" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Tambah Barang</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('laporan.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>Laporan Lelang</p>
             </a>
           </li>
           @endif
