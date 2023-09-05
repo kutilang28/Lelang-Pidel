@@ -220,7 +220,7 @@
       <div class="row">
         <div class="col-lg-3">
           <div class="detail_img-box">
-            <img src="{{asset('site')}}/images/139481.png" alt="" width="20px" />
+            <img src="{{asset('site')}}/images/139481.png" alt="" width="15px" />
             <br>
             <br>
             <br>

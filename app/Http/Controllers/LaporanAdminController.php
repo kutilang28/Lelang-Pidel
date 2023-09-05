@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Items;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 
-class LaporanController extends Controller
+class LaporanAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,6 +15,7 @@ class LaporanController extends Controller
      */
     public function index()
     {
+        //
         $data = Items::all();
         $endedAuctions = DB::table('items')
             ->leftJoinSub(

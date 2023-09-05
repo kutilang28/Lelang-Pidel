@@ -17,6 +17,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
+            <button onclick="printTable()" class="btn btn-primary">Print Table</button>
             <table class="table table-bordered">
               <thead>
                 <tr>
@@ -46,5 +47,23 @@
       </div><!-- /.container-fluid -->
     </div>
   </div>
+  <script>
+    function printTable() {
+        const printWindow = window.open('', '', 'width=600,height=600');
+        printWindow.document.write('<html><head><title>Print</title>');
+        printWindow.document.write('<style>');
+        printWindow.document.write('table, th, td { border: 1px solid black; border-collapse: collapse; }'); // Added CSS for table border
+        printWindow.document.write('th, td { padding: 10px; }'); // Optional: Add padding to cells
+        printWindow.document.write('</style>');
+        printWindow.document.write('</head><body>');
+        printWindow.document.write('<table>');
+        printWindow.document.write(document.querySelector(".table").outerHTML);
+        printWindow.document.write('</table>');
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+    }
+</script>
+
 
 @include('layouts.footer')

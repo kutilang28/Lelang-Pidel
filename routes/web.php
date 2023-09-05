@@ -5,6 +5,7 @@ use App\Http\Controllers\BidController;
 use App\Http\Controllers\ItemPetController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\LaporanAdminController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\SesiController;
 use Illuminate\Support\Facades\Route;
@@ -41,5 +42,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('bid', BidController::class)->middleware('userAkses:masyarakat');
     Route::resource('petugas', PetugasController::class)->middleware('userAkses:administrator');
     Route::resource('laporan', LaporanController::class)->middleware('userAkses:petugas');
+    Route::resource('laporanmin', LaporanAdminController::class)->middleware('userAkses:administrator');
     Route::get('/logout', [SesiController::class, 'logout']);
 });

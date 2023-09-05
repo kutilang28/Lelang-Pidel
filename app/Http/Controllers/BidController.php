@@ -73,7 +73,7 @@ class BidController extends Controller
         $bid->amount = $request->amount;
         $bid->save();
 
-        return redirect()->back()->with('success', 'Your bid was placed successfully!');
+        return redirect()->back()->with('success', 'Tawaran anda berhasil dimasukkan');
     }
 
     /**
@@ -89,7 +89,7 @@ class BidController extends Controller
                 ->where('items_id', $item->id)
                 ->orderByDesc('amount')
                 ->first();
-
+                
         return view('bid.create', compact('item', 'highestBid'));
     }
 

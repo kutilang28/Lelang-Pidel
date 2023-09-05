@@ -598,6 +598,12 @@
               <p>Tambah Petugas</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('laporanmin.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>Laporan Lelang</p>
+            </a>
+          </li>
           @endif
           @if (Auth::user()->role == 'petugas')
           <li class="nav-item">
