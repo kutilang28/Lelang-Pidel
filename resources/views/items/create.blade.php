@@ -56,6 +56,14 @@
                     <label for="inputClientCompany">Harga Lelang</label>
                     <input type="number" name="starting_bid" id="inputClientCompany" class="form-control">
                   </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" value="active">
+                    <label class="form-check-label">Active</label>
+                  </div>
+                  <div class="form-check">
+                      <input class="form-check-input" type="radio" name="status" value="inactive">
+                      <label class="form-check-label">Inactive</label>
+                  </div>
                 </div>
                 <!-- /.card-body -->
             </div>

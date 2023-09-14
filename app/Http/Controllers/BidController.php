@@ -43,9 +43,9 @@ class BidController extends Controller
      */
     public function store(Request $request, Items $items)
     {
-        if (Carbon::now() > $request->end_time) {
-            return redirect()->back()->withErrors(['error' => 'The auction has ended.']);
-        }
+        // if ($items->status == 'Inactive' || Carbon::now() > $items->end_time) {
+        //     return redirect()->back()->withErrors(['error' => 'The auction has ended or is inactive.']);
+        // }
         
         $request->validate([
             'amount' => 'required', // Ensure a positive amount
@@ -89,8 +89,13 @@ class BidController extends Controller
                 ->where('items_id', $item->id)
                 ->orderByDesc('amount')
                 ->first();
+        $bidder = DB::table('bids')
+                ->join('users', 'bids.user_id', '=', 'users.id') // Join with the users table
+                ->where('bids.items_id', $item->id)
+                ->select('bids.*', 'users.name as bidder_name') // Select the name of the bidder along with other bid details
+                ->get();
                 
-        return view('bid.create', compact('item', 'highestBid'));
+        return view('bid.create', compact('item', 'highestBid', 'bidder'));
     }
 
     /**

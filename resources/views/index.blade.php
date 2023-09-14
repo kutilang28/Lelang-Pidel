@@ -220,7 +220,7 @@
       <div class="row">
         <div class="col-lg-3">
           <div class="detail_img-box">
-            <img src="{{asset('site')}}/images/139481.png" alt="" width="15px" />
+            {{-- <img src="{{asset('site')}}/images/139481.png" alt="" width="15px" /> --}}
             <br>
             <br>
             <br>
@@ -572,7 +572,7 @@
   <!-- end client section -->
 
   <!-- sign section -->
-  <section class="sign_section layout_padding2">
+  {{-- <section class="sign_section layout_padding2">
     <div class="container">
       <div class="row">
         <div class="col-md-5">
@@ -594,12 +594,12 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
 
   <!-- end sign section -->
 
   <!-- info section -->
-  <section class="info_section layout_padding">
+  {{-- <section class="info_section layout_padding">
     <div class="container links_container">
       <div class="row ">
         <div class="col-md-3">
@@ -794,7 +794,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
 
   <!-- end info section -->
 

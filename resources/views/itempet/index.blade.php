@@ -19,7 +19,7 @@
             </div>
           </div>
           <!-- /.card-header -->
-          <div class="card-body">
+          <div class="card-body table-responsive">
             <table class="table table-bordered">
               <thead>
                 <tr>
@@ -29,6 +29,7 @@
                   <th>Deskripsi Barang</th>
                   <th>Harga Awal Barang</th>
                   <th>Tgl Postingan</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -43,6 +44,7 @@
                       <td>{{$item -> description}}</td>
                       <td>{{$item -> starting_bid}}</td>
                       <td>{{$item -> created_at}}</td>
+                      <td>{{$item -> status}}</td>
                       <td>
                         <form action="{{ route('itempet.destroy', $item->id)  }}" method="POST">
                           <a class="btn btn-warning" href="{{route('itempet.edit', $item->id)}}">Edit</a>

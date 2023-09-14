@@ -20,7 +20,8 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table class="table table-bordered">
+            <div class="table-responsive">
+            <table class="table table-bordered table-responsive">
               <thead>
                 <tr>
                   <th style="width: 10px">id barang</th>
@@ -30,6 +31,7 @@
                   <th>Harga Awal Barang</th>
                   <th>Tgl Postingan</th>
                   <th>Tgl Selesai</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -45,6 +47,7 @@
                       <td>{{$item -> starting_bid}}</td>
                       <td>{{$item -> created_at}}</td>
                       <td>{{$item -> end_time}}</td>
+                      <td>{{$item -> status}}</td>
                       <td>
                         <form action="{{ route('items.destroy', $item->id)  }}" method="POST">
                           <a class="btn btn-warning" href="{{route('items.edit', $item->id)}}">Edit</a>
@@ -57,6 +60,7 @@
                 @endforeach
               </tbody>
             </table>
+            </div>
           </div>
         </div>
       </div><!-- /.container-fluid -->

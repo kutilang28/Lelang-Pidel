@@ -88,6 +88,10 @@
               <div class="alert alert-warning">
                   Tawaran ini sudah selesai!
               </div>
+              @elseif ($item->status == 'inactive')
+              <div class="alert alert-warning">
+                Tawaran ini sudah tidak aktiv!
+              </div>
           @else
               <!-- Your bid form and other content related to the ongoing auction can go here -->
               <div class="mt-4">
@@ -114,6 +118,27 @@
               </nav>
               <div class="tab-content p-3" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">{{ $item->description }}</div>
+                <div class="card-body table-responsive">
+                  
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <td>Nama Penawaran</td>
+                        <td>Harga Penawaran</td>
+                        <td>Tanggal Penwaran</td>
+                      </tr>
+                    </thead>
+                    @foreach ($bidder as $item)
+                    <tbody>
+                      <tr>
+                        <td>{{ $item->bidder_name }}</td>
+                        <td>{{ $item->amount }}</td>
+                        <td>{{ $item->created_at }}</td>
+                      </tr>
+                    </tbody>
+                    @endforeach
+                  </table>
+                </div>
               </div>
             </div>
           </div>
